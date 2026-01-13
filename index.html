@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="track.js">
+<script src="run.js">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Processing Screen</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #0d1117;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #fff;
+    }
+
+    .container {
+        text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    .loader {
+        border: 6px solid #2f3542;
+        border-top: 6px solid #4cd137;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 20px;
+        animation: spin 1s linear infinite;
+    }
+
+    .checkmark-circle {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        display: none;
+        animation: pop 0.4s ease forwards;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div id="loader" class="loader"></div>
+
+    <!-- Crisp SVG checkmark inside a green circle -->
+    <svg id="checkmark" class="checkmark-circle" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="25" fill="#4cd137"/>
+        <path d="M14 27 l8 8 l16 -16" stroke="white" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <h2 id="text">Processing device data...</h2>
+</div>
+
+<script>
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("checkmark").style.display = "block";
+        document.getElementById("text").textContent = "Completed";
+    }, 4000);
+</script>
+
+</body>
+</html>
